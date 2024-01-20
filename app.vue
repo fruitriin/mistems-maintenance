@@ -17,6 +17,12 @@
         </form>
         <ul>
           <li v-for="chat in chats" :key="chat.id">
+            {{
+              formatDistanceToNow(chat.created_at, {
+                includeSeconds: true,
+                locale: ja(),
+              })
+            }}
             {{ chat.message }}
           </li>
         </ul>
@@ -39,7 +45,9 @@ body,
 }
 </style>
 <script lang="ts">
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
+import { formatDistanceToNow } from "date-fns";
+import { ja } from "date-fns/locale/ja";
 
 const supabaseUrl = "https://pountivqclwqpqkhavtn.supabase.co";
 const supabase = createClient(
@@ -51,7 +59,7 @@ const supabase = createClient(
 export default defineNuxtComponent({
   data() {
     return {
-      chats: [] as { id: number; message: string }[],
+      chats: [] as { id: number; message: string; created_at: Date }[],
       text: "",
     };
   },
@@ -63,6 +71,10 @@ export default defineNuxtComponent({
     }, 5000);
   },
   methods: {
+    ja() {
+      return ja;
+    },
+    formatDistanceToNow,
     async getChat() {
       let { data: todos, error } = await supabase
         .from("todos")
