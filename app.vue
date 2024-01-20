@@ -7,7 +7,7 @@
 </template>
 
 <style>
-html, body ,.__nuxt, .app {
+html, body ,#__nuxt, .app {
   height: 100%;
 }
 </style>
