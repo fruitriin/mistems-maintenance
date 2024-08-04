@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="app"
-    style="display: flex; flex-direction: column; overflow-y: hidden"
-  >
+  <div class="app" style="display: flex; flex-direction: column">
     <div style="display: flex">
       <div>
         <h1>Mistems is down</h1>
@@ -17,7 +14,7 @@
         </form>
         <ul>
           <li v-for="chat in chats" :key="chat.id">
-            <span style="min-width: 80px">
+            <span style="width: 80px">
               {{
                 formatDistanceToNow(chat.created_at, {
                   includeSeconds: true,
@@ -46,64 +43,8 @@
         サーバーパフォーマンスモニタ
       </button>
     </div>
-    <iframe
-      v-if="tab === 'status'"
-      src="https://status.misskey.systems/"
-      width="100%"
-      height="100%"
-    ></iframe>
-
-    <div
-      v-if="tab === 'metric'"
-      class="metric"
-      style="display: flex; flex-wrap: wrap"
-    >
-      <div class="item">
-        ロードアベレージ<br />
-        <iframe
-          src="https://mackerel.io/embed/public/embed/zDhYnIFK8HaOF8XjzPw5mWhrb4QJTFpj5UhNdoIMiBB04IJcEisyNdBRXdKJ2fq1?period=30m"
-          height="200"
-          width="400"
-          frameborder="0"
-        />
-      </div>
-      <div class="item">
-        CPU<br />
-        <iframe
-          src="https://mackerel.io/embed/public/embed/EA0rfRa2rfdRVbQ7DISMyAjGMCtU36l84tdOerjrM5t13ydZiARjh1iuze6QxEAr?period=30m"
-          height="200"
-          width="400"
-          frameborder="0"
-        />
-      </div>
-      <div class="item">
-        メモリー<br />
-        <iframe
-          src="https://mackerel.io/embed/public/embed/iqmXxYziC63FR1XX7mZUOjR1KzGsRwNnTXHGpzUj7PmschRVIek6VPt6FrbZkB9R?period=30m"
-          height="200"
-          width="400"
-          frameborder="0"
-        />
-      </div>
-      <div class="item">
-        Disk<br />
-        <iframe
-          src="https://mackerel.io/embed/public/embed/Vup7uXZC6PtSia2kv4rnOti2weHt6i4qckjSavZdPBk2sMBcxvyJtXTILFoxAoDq?period=30m"
-          height="200"
-          width="400"
-          frameborder="0"
-        ></iframe>
-      </div>
-      <div class="item">
-        IO<br />
-        <iframe
-          src="https://mackerel.io/embed/public/embed/x7at7iB6tpbxul9DlhvYOiL63MZUa3TJVjREn390BSKdma05weDmTv2j1wlYEf0U?period=30m"
-          height="200"
-          width="400"
-          frameborder="0"
-        ></iframe>
-      </div>
-    </div>
+    <Status v-if="tab === 'status'" />
+    <Metrics v-if="tab === 'metric'" class="metric" />
   </div>
 </template>
 
@@ -130,6 +71,8 @@ body,
 import { createClient } from "@supabase/supabase-js";
 import { formatDistanceToNow } from "date-fns";
 import { ja } from "date-fns/locale/ja";
+import Status from "~/components/Status.vue";
+import Metrics from "~/components/Metrics.vue";
 
 const supabaseUrl = "https://pountivqclwqpqkhavtn.supabase.co";
 const supabase = createClient(
@@ -139,6 +82,7 @@ const supabase = createClient(
 
 // Create a function to handle inserts
 export default defineNuxtComponent({
+  components: { Metrics, Status },
   data() {
     return {
       tab: "status" as "status" | "metric",
