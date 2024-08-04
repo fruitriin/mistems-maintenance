@@ -14,7 +14,7 @@
         </form>
         <ul>
           <li v-for="chat in chats" :key="chat.id">
-            <span style="width: 80px">
+            <span style="display: inline-block; width: 80px">
               {{
                 formatDistanceToNow(chat.created_at, {
                   includeSeconds: true,
