@@ -1,5 +1,6 @@
 <template>
   <div class="app" style="display: flex; flex-direction: column">
+    <!-- ::CLOUDFLARE_ERROR_500S_BOX:: -->
     <div style="display: flex">
       <div>
         <h1>Mistems is down</h1>
@@ -77,7 +78,7 @@ import Metrics from "~/components/Metrics.vue";
 const supabaseUrl = "https://pountivqclwqpqkhavtn.supabase.co";
 const supabase = createClient(
   supabaseUrl,
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvdW50aXZxY2x3cXBxa2hhdnRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU3NDUwMjcsImV4cCI6MjAyMTMyMTAyN30.gqUimyPjYrILDl6VEtRHotdMvH_ZF0ldW0xpDHUmA8w",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvdW50aXZxY2x3cXBxa2hhdnRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU3NDUwMjcsImV4cCI6MjAyMTMyMTAyN30.gqUimyPjYrILDl6VEtRHotdMvH_ZF0ldW0xpDHUmA8w"
 );
 
 // Create a function to handle inserts
