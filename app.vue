@@ -1,6 +1,5 @@
 <template>
   <div class="app" style="display: flex; flex-direction: column">
-    <!-- ::CLOUDFLARE_ERROR_500S_BOX:: -->
     <div style="display: flex">
       <div>
         <h1>Mistems is down</h1>
