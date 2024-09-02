@@ -11,7 +11,7 @@ export default defineComponent({
 
 <template>
   <SystemsApp />
-  <SystemsDB1 />
+  <!-- <SystemsDB1 /> -->
 </template>
 
 <style scoped lang="scss"></style>
